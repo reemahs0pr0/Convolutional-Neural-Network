@@ -77,9 +77,9 @@ def get_y_test():
 def img_aug(i, img):
     switcher = {
         0: img.transpose(Image.FLIP_LEFT_RIGHT),
-        1: img.rotate(45),
+        1: img.transpose(Image.FLIP_TOP_BOTTOM),
         2: img.rotate(90),
-        3: img.rotate(-45),
-        4: img.rotate(-90),
+        3: img.rotate(180),
+        4: img.rotate(270)
     }
     return switcher.get(i, None)

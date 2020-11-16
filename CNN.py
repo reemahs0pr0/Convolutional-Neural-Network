@@ -38,17 +38,15 @@ model.add(tf.keras.layers.MaxPooling2D(pool_size=(2, 2), strides=(2,2)))
 model.add(tf.keras.layers.Dropout(0.25))
 #------------------------fully-connected classifier----------------------------
 model.add(tf.keras.layers.Flatten())	
-model.add(tf.keras.layers.Dense(4096, activation='relu'))
-model.add(tf.keras.layers.Dropout(0.5))
-model.add(tf.keras.layers.Dense(4096, activation='relu'))
+model.add(tf.keras.layers.Dense(256, activation='relu'))
 model.add(tf.keras.layers.Dropout(0.5))
 model.add(tf.keras.layers.Dense(4, activation='softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adam', 
               metrics=['accuracy'])
 model.summary()
 
-history = model.fit(x_train, y_train, epochs=100, verbose=1, 
-          validation_data=(x_test, y_test))
+history = model.fit(x_train, y_train, epochs=35, verbose=1, 
+          validation_split=0.2)
 		
 score = model.evaluate(x_test, y_test)
 print("score =", score)
